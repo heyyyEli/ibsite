@@ -1,0 +1,99 @@
+/* Container and page layout */
+.news-container {
+  width: 100%;           /* Full viewport width */
+  margin: 0;
+  padding: 0 20px;
+  padding-bottom: 50px;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background-color: #011627; /* dark blue background */
+}
+
+/* Main header */
+.news-container h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* Subheader */
+.news-container p.subheader {
+  color: #87b5c4;
+  font-size: 1.25rem;
+  margin-bottom: 35px;
+}
+
+/* News category label */
+.news-category {
+  margin-bottom: 30px;
+}
+
+.category-label {
+  display: inline-block;
+  background-color: #1c2d4a;
+  color: #5aa9e6;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  margin-bottom: 15px;
+}
+
+/* Single news item box */
+.news-item {
+  background-color: #112240;
+  border-radius: 15px;
+  padding: 20px 30px;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 30%);
+  margin-bottom: 18px;
+  transition: box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+  box-shadow: 0 7px 27px rgb(0 0 0 / 45%);
+}
+
+/* News title */
+.news-item h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #c7d2fe;
+}
+
+/* News content */
+.news-item p {
+  color: #adbac7;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* News image styling */
+.news-item img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Attachment link */
+.news-item a {
+  font-size: 0.875rem;
+  color: #5aa9e6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+/* Publication date aligned right */
+.news-item .date {
+  font-size: 0.75rem;
+  color: #a1b0c3;
+  text-align: right;
+  font-weight: 600;
+}

@@ -1,0 +1,31 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}EE Timeline{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>{{ project.subject }} — {{ project.topic }}</h1>
+  <p><strong>Start:</strong> {{ project.start_date }} | <strong>Deadline:</strong> {{ project.deadline }}</p>
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-fill progress-{{ progress_class }}"></div>
+  </div>
+  <p><strong>Progress:</strong> {{ progress }}%</p>
+
+  <!-- Milestones grid -->
+  <div class="ideas-grid">
+    {% for m in milestones %}
+      <div class="idea-card">
+        <h3>{{ m.title }}</h3>
+        <p><strong>Due:</strong> {{ m.due_date }}</p>
+        <p><strong>Status:</strong> 
+          {% if m.completed %}
+            <span class="status-complete">Completed</span>
+          {% else %}
+            <span class="status-pending">Pending</span>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

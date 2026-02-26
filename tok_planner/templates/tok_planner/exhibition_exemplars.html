@@ -1,0 +1,18 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}Exhibition Exemplars{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>Exhibition Exemplars</h1>
+  <ul>
+    {% for ex in exemplars %}
+      <li>
+        <strong>{{ ex.title }}</strong>
+        {% if ex.notes %}<div class="muted">{{ ex.notes }}</div>{% endif %}
+        <div><a class="cas-button" href="{{ ex.file.url }}" download>Download</a></div>
+      </li>
+    {% empty %}
+      <p>No exemplars yet. Upload in Admin.</p>
+    {% endfor %}
+  </ul>
+</main>
+{% endblock %}

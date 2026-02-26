@@ -1,0 +1,112 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}Theory of Knowledge (TOK){% endblock %}
+
+{% block content %}
+<main class="tok-page" style="color: #e9f2ff; background: linear-gradient(to bottom, #0b1f3a, #07162b); padding:2rem; transition: filter 0.3s ease;" id="main-content">
+
+  <h1>Theory of Knowledge (TOK)</h1>
+
+  <p>{{ description }}</p>
+
+  <section class="core-components" style="margin-top:2rem;">
+    <h2>Core Components of TOK</h2>
+    <pre style="white-space: pre-wrap;">{{ core_components }}</pre>
+  </section>
+
+  <section class="aim-importance" style="margin-top:2rem;">
+    <h2>Aim and Importance of TOK</h2>
+    <p>{{ aim_importance }}</p>
+  </section>
+
+  <section class="key-themes" style="margin-top:2rem; display:flex; flex-wrap:wrap; gap: 2rem;">
+    <div style="flex:1; min-width: 320px;">
+      <h2>Key Themes in TOK</h2>
+      <pre style="white-space: pre-wrap;">{{ key_themes }}</pre>
+    </div>
+    <div style="flex:unset; min-width: 240px;">
+      <!-- Button to open TOK Exhibition Questions popup -->
+      <button id="tok-exhibition-btn" class="neon-button" aria-haspopup="dialog" aria-controls="tok-exhibition-modal" aria-expanded="false" style="padding: 1rem 1.5rem; font-weight: bold; cursor: pointer; border-radius: 12px; border: none; background-color: #00bfff; color: black; box-shadow: 0 0 12px #00d1ff;">
+        Core TOK Exhibition Questions
+      </button>
+    </div>
+  </section>
+
+  <section class="educational-philosophy" style="margin-top:2rem;">
+    <h2>Educational Philosophy</h2>
+    <p>{{ educational_philosophy }}</p>
+  </section>
+
+</main>
+
+<!-- Hidden modal for TOK Exhibition Questions -->
+<div id="tok-exhibition-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+  <div class="modal__backdrop" data-close style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+  <div class="modal__panel" role="document" tabindex="0" style="position: relative; z-index: 10000; background: white; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 20px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 80vh; overflow-y: auto;">
+    <div class="modal__header" style="position: sticky; top: 0; background: white; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+      <h2 id="modal-title">TOK Exhibition Questions</h2>
+      <button class="modal__close" type="button" aria-label="Close" style="float: right; background: none; border: none; font-size: 1.5rem; cursor: pointer; position: absolute; top: 10px; right: 15px;">&times;</button>
+    </div>
+    <div class="modal__content" style="color: black; padding-top: 10px;">
+      <ul>
+        {% for question in tok_exhibition_questions %}
+        <li style="margin-bottom: 10px;">{{ question }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('tok-exhibition-btn');
+    const modal = document.getElementById('tok-exhibition-modal');
+    const mainContent = document.getElementById('main-content');
+    const closeBtn = modal.querySelector('.modal__close');
+    const backdrop = modal.querySelector('.modal__backdrop');
+
+    function openModal() {
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      
+      // Apply blur to main content only
+      mainContent.style.filter = 'blur(5px) brightness(0.8)';
+      mainContent.style.pointerEvents = 'none';
+      mainContent.style.userSelect = 'none';
+      
+      // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
+      
+      modal.querySelector('.modal__panel').focus();
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      
+      // Remove blur from main content
+      mainContent.style.filter = 'none';
+      mainContent.style.pointerEvents = 'auto';
+      mainContent.style.userSelect = 'auto';
+      
+      // Restore background scrolling
+      document.body.style.overflow = '';
+      
+      btn.focus();
+    }
+
+    btn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.style.display === 'block') {
+        closeModal();
+      }
+    });
+  });
+</script>
+{% endblock %}

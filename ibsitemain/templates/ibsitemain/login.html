@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In</title>
+    <link rel="stylesheet" href="{% static 'ibsitemain/css/login.css' %}">
+    <script>
+        function showForm(role) {
+            document.getElementById('student_form').style.display = role === 'student' ? 'block' : 'none';
+            document.getElementById('teacher_form').style.display = role === 'teacher' ? 'block' : 'none';
+            document.getElementById('admin_form').style.display = role === 'admin' ? 'block' : 'none';
+            document.getElementById('role_selected').value = role;
+        }
+        function toggleStudentSignUp(show) {
+            document.getElementById('student_login').style.display = show ? 'none' : 'block';
+            document.getElementById('student_signup').style.display = show ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+  <div class="login-container">
+    <img src="{% static 'ibsitemain/img/ib-seal.png' %}" alt="IB Logo" class="logo" />
+    <h1>Log In</h1>
+
+    <div class="role-buttons">
+      <button type="button" onclick="showForm('student')">Student</button>
+      <button type="button" onclick="showForm('teacher')">Teacher</button>
+      <button type="button" onclick="showForm('admin')">Administration</button>
+    </div>
+
+    <!-- Student Form -->
+    <div id="student_form" class="form-section" style="display:none;">
+    <div id="student_login" style="display:block;">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="hidden" name="role" id="role_selected" value="">
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <p><a href="#" onclick="toggleStudentSignUp(true); return false;">Sign Up</a></p>
+    </div>
+
+      <div id="student_signup" style="display:none;">
+        <form method="post" action="{% url 'student_signup' %}">
+          {% csrf_token %}
+          <input type="text" name="full_name" placeholder="Full Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <select name="graduation_year" required>
+            <option value="">Select Graduation Year</option>
+            <option value="M26">M26</option>
+            <option value="N26">N26</option>
+            <!-- Add more here -->
+          </select>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p><a href="#" onclick="toggleStudentSignUp(false); return false;">Back to Login</a></p>
+      </div>
+    </div>
+
+    <!-- Teacher Form -->
+    <div id="teacher_form" class="form-section" style="display:none;">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="hidden" name="role" value="teacher" />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <!-- Admin Form -->
+    <div id="admin_form" class="form-section" style="display:none;">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="hidden" name="role" value="admin" />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'ibsitemain/base.html' %}
+{% load static %}
+{% block title %}Extended Essay (EE){% endblock %}
+
+{% block content %}
+<main class="ee-page" style="background: linear-gradient(to bottom, #0b1f3a, #07162b); min-height:100vh; color:#e9f2ff;">
+  <section style="max-width: 1060px; margin: 2rem auto 0;">
+    <h1 style="font-size: 2.8rem; font-weight: bold; letter-spacing: -2px; margin-bottom:1.2rem;">Extended Essay (EE)</h1>
+    <p style="font-size: 1.2rem; margin-bottom:2.2rem;">{{ ee_intro }}</p>
+
+    <div class="ee-sections" style="display: flex; flex-wrap: wrap; gap: 2.5rem 4rem; margin-bottom:2.5rem;">
+      <div style="flex:1 1 300px;">
+        <h2 style="color: #1bc3ee; font-size:1.22rem; margin-bottom:0.2rem;">Overview</h2>
+        <ul style="margin:0 0 1.5rem 1rem; color:#b8d8ff; font-size:1.08rem;line-height: 1.6;">
+          {% for line in ee_overview.splitlines %}
+            {% if line.strip %}<li>{{ line|slice:"2:" }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Info sections shown as cards (What is EE, Subject, Research, Supervision, Assessment) -->
+    <div class="ee-info-cards" style="display: flex; flex-wrap: wrap; gap:2rem; margin-bottom:2.4rem;">
+      {% for section in ee_sections %}
+      <div style="flex:1 1 300px; background:rgba(11,31,58,0.9); border: 2px solid #00bfff; border-radius: 16px; box-shadow: 0 2px 32px #003b6644, 0 0 16px #00bfff66 inset; padding:1.25rem 1.5rem;">
+        <h3 style="color: #00c6ff; font-size:1.2rem; margin-bottom:0.5rem;">{{ section.title }}</h3>
+        <div style="font-size: 1.07rem; color: #e9f2ff;">{{ section.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Recommended & Risky Subjects Rows -->
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; margin-bottom:2.2rem;">
+      <div style="flex:1 1 330px;">
+        <h3 style="color:#1bc3ee; font-size:1.13rem; margin-bottom:0.55rem;">Recommended Subjects for EE</h3>
+        <ul>
+          {% for subj in recommended_subjects %}
+            <li>
+              <strong>{{ subj.title }}</strong>: {{ subj.desc }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div style="flex:1 1 330px;">
+        <h3 style="color:#1bc3ee; font-size:1.13rem; margin-bottom:0.55rem;">Subjects with Higher Risks</h3>
+        <ul>
+          {% for subj in higher_risk_subjects %}
+            <li>
+              <strong>{{ subj.title }}</strong>: {{ subj.desc }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Strategic Considerations -->
+    <div style="margin-bottom: 1.8rem;">
+      <h3 style="color: #1bc3ee; font-size:1.13rem; margin-bottom:0.35rem;">Strategic Considerations</h3>
+      <p style="color:#e9f2ff;">{{ strategic_considerations }}</p>
+    </div>
+  </section>
+</main>
+{% endblock %}

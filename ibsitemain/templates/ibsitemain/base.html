@@ -1,0 +1,73 @@
+<!-- templates/ibsitemain/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <title>IB Diploma Programme</title>
+    <link rel="stylesheet" href="{% static 'ibsitemain/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'ibsitemain/css/news.css' %}"> 
+    
+</head>
+
+<body>
+    <nav> <ul class="main-nav"> 
+      <li><a href="{% url 'ib_home' %}">Home</a></li>
+      <li><a href="{% url 'ib_subjects' %}">Subjects</a></li> 
+      <li><a href="{% url 'ib_tok' %}">TOK</a></li> 
+      <li><a href="{% url 'ib_tips' %}">Tips</a></li> 
+      <li><a href="{% url 'ib_cas' %}">CAS</a></li> 
+      <li><a href="{% url 'ib_ee' %}">EE</a></li> 
+      <li><a href="{% url 'ib_news' %}">Updates/News</a></li> 
+      <li><a href="{% url 'ib_benefits_disadvantages' %}">Program Info</a></li>
+      <li><a href="{% url 'chat:home' %}">Community Chat</a></li> 
+      
+      <li class="dropdown"> 
+        <a href="#" id="academic-tools-link">Academic Tools ▼</a> 
+        <ul class="dropdown-menu"> 
+          <li><a href="{% url 'ee_dashboard' %}">EE Planner</a></li> 
+          <li><a href="{% url 'cas_idea_list' %}">CAS Idea Generator</a></li> 
+          <li><a href="{% url 'tok_dashboard' %}">TOK Planner</a></li> 
+        </ul> 
+      </li>
+
+     {% if user.is_authenticated %}
+      <li class="right">
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="link-button">Log Out</button>
+        </form>
+      </li>
+       {% if user.role == 'admin' %}
+        <li class="right"><a href="{% url 'admin:index' %}">Admin Dashboard</a></li>
+      {% elif user.role == 'student' %}
+        <li class="right"><a href="{% url 'student_home' %}">Student Home</a></li>
+      {% endif %}
+    {% else %}
+    <li class="right"><a href="{% url 'login' %}" class="login-btn">Log In</a></li>
+    {% endif %}
+  </ul>
+  
+  <!-- Fluid hover effect element -->
+  <div class="fluid-hover-effect" aria-hidden="true"></div>
+</nav>
+
+    <main style="min-height: calc(100vh - 60px); display: flex; flex-direction: column; margin:0; padding:0;">
+        {% block content %}
+        {% endblock %}
+    </main>
+        {% block extra_js %}{% endblock %}
+    <script src="{% static 'ibsitemain/js/scripts.js' %}"></script>
+    <script src="{% static 'ibsitemain/js/nav-hover.js' %}"></script>
+
+</body>
+
+
+</html>
+
+
+

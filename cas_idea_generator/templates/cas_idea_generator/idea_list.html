@@ -1,0 +1,36 @@
+
+{% extends 'ibsitemain/base.html' %}
+{% block title %}CAS Idea Generator{% endblock %}
+
+{% block content %}
+<main class="cas-ideas-page">
+  <h1>CAS Idea Generator</h1>
+
+  <form method="get" class="filter-form">
+    <input type="text" name="q" placeholder="Search by keyword" value="{{ request.GET.q }}">
+    <input type="text" name="impact" placeholder="Impact area" value="{{ request.GET.impact }}">
+    <input type="text" name="skill" placeholder="Skill" value="{{ request.GET.skill }}">
+    <button type="submit">Filter</button>
+  </form>
+
+  <div class="ideas-grid">
+    {% for idea in ideas %}
+      <div class="idea-card">
+        <h3>{{ idea.title }}</h3>
+        <p>{{ idea.description }}</p>
+        <ul class="strands">
+          {% if idea.creativity %}<li>🎨 Creativity</li>{% endif %}
+          {% if idea.activity %}<li>🏃 Activity</li>{% endif %}
+          {% if idea.service %}<li>🤝 Service</li>{% endif %}
+        </ul>
+        <p><strong>Duration:</strong> {{ idea.duration_months }} months</p>
+        <p><strong>Group Size:</strong> {{ idea.group_size }}</p>
+        <p><strong>Impact Area:</strong> {{ idea.impact_area }}</p>
+        <p><strong>Skills:</strong> {{ idea.skills }}</p>
+      </div>
+    {% empty %}
+      <p>No ideas found. Try adjusting your filters.</p>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'ibsitemain/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="homepage-wrapper">
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+        <h1>Welcome to the IB Diploma Programme</h1>
+        <p>{{ introduction }}</p>
+    </section>
+
+    <!-- COORDINATOR MESSAGE -->
+    <section class="intro-section">
+        <h2>Coordinator’s Message</h2>
+        <p>{{ coordinator_message }}</p>
+    </section>
+
+    <!-- CURRICULUM STRUCTURE -->
+    <section class="curriculum-section">
+        <h2>Structure & Curriculum</h2>
+        <div class="highlight-box">
+            <p>{{ structure_and_curriculum }}</p>
+        </div>
+    </section>
+
+    <!-- EDUCATIONAL PHILOSOPHY & BENEFITS -->
+    <section class="benefits-section">
+        <h2>Educational Philosophy & Benefits</h2>
+        <div class="highlight-box">
+            <p>{{ educational_philosophy_and_benefits }}</p>
+        </div>
+    </section>
+
+    <!-- ASSESSMENT -->
+    <section class="assessment-section">
+        <h2>Assessment</h2>
+        <div class="highlight-box">
+            <p>{{ assessment }}</p>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<!-- Placeholder for page-specific scripts -->
+{% endblock %}
+
+
+
+    
+
+   

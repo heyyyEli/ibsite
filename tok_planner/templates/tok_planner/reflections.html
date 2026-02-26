@@ -1,0 +1,26 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}TOK Reflections{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>Reflection Journal</h1>
+  <form method="post" class="filter-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="cas-button">Add reflection</button>
+  </form>
+
+  <section class="cas-section" style="margin-top: 1rem;">
+    <h2>Recent reflections</h2>
+    <ul>
+      {% for r in reflections %}
+        <li>
+          <strong>{{ r.date }}</strong> — <em>{{ r.section|title }}</em>
+          <div>{{ r.content|linebreaks }}</div>
+        </li>
+      {% empty %}
+        <p>No reflections yet.</p>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+{% endblock %}

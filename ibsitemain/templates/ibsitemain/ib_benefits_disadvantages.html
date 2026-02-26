@@ -1,0 +1,37 @@
+{% extends "ibsitemain/base.html" %}
+
+{% block content %}
+<main class="ib-diploma-benefits" role="main" aria-label="IB Diploma Information">
+
+  <header>
+    <h1 class="page-title">International Baccalaureate: Benefits and Disadvantages</h1>
+    <p class="intro-text">
+      An overview of the advantages and challenges of the IB Diploma Programme.
+    </p>
+  </header>
+
+  <div class="ib-info-wrapper">
+    <section class="benefit-blocks" aria-label="IB Program Benefits">
+      <h2 class="section-heading">Benefits</h2>
+      {% for benefit in benefits %}
+        <article class="benefit-col" role="region" tabindex="0">
+          <h3 class="benefit-title">{{ benefit.title }}</h3>
+          <p class="benefit-detail">{{ benefit.detail }}</p>
+        </article>
+      {% endfor %}
+    </section>
+
+    <section class="disadvantage-blocks" aria-label="IB Program Disadvantages">
+      <h2 class="section-heading">Disadvantages</h2>
+      {% for disadvantage in disadvantages %}
+        <article class="benefit-col" role="region" tabindex="0">
+          <h3 class="disadvantage-title">{{ disadvantage.title }}</h3>
+          <p class="disadvantage-detail">{{ disadvantage.detail }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  </div>
+
+</main>
+
+{% endblock %}

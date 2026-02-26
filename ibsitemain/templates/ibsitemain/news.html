@@ -1,0 +1,35 @@
+{% extends 'ibsitemain/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="news-container">
+  <h1>IB News</h1>
+  <p class="subheader">All Announcements</p>
+
+  {% for category_key, news_items in news_by_category.items %}
+    <div class="news-category">
+      <span class="category-label">{{ category_key|capfirst }}</span>
+
+      {% for item in news_items %}
+        <div class="news-item">
+          <h2>{{ item.title }}</h2>
+
+          {% if item.image %}
+            <img src="{{ item.image.url }}" alt="Image for {{ item.title }}">
+          {% endif %}
+
+          <p>{{ item.content }}</p>
+
+          {% if item.attachment %}
+            <a href="{{ item.attachment.url }}" download>Download attachment</a>
+          {% endif %}
+
+          <p class="date">{{ item.pub_date|date:"M d, Y" }}</p>
+        </div>
+      {% empty %}
+        <p>No news items in this category.</p>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

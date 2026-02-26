@@ -1,0 +1,311 @@
+{% extends "ibsitemain/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="subjects-section">
+  <h1>Subjects Offered</h1>
+  <div class="subjects-grid">
+    {% for subject_group in subjects %}
+      {% for subject in subject_group.subjects %}
+      <div class="subject-box" 
+          tabindex="0" 
+          data-open-modal 
+          data-modal-target="#modal-subject-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" 
+          data-modal-title="{{ subject }}">
+        <div class="subject-icon">
+        </div>
+        <div class="subject-name">{{ subject }}</div>
+      </div>
+{% endfor %} 
+{% endfor %} 
+</div> 
+</section>
+
+      <!-- modal content template -->
+<!-- 1-1: Language A Language and Literature HL/SL -->
+<div id="modal-subject-1-1" class="modal-template" style="display:none;">
+  <h2>Language A Language and Literature HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    This course focuses on the study of literary and non‑literary texts in the student’s best language.
+    Students develop skills in analysis, interpretation, and critical thinking while exploring a wide range
+    of genres and global perspectives.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Fewer texts and slightly shorter assessments, with focus on core analytical skills.</li>
+    <li><strong>HL:</strong> More texts, deeper literary analysis, and an additional HL essay component.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Law, journalism, media, education, publishing, communications, and any field requiring strong reading and writing skills.
+  </p>
+</div>
+
+<!-- 1-2: Persian A -->
+<div id="modal-subject-1-2" class="modal-template" style="display:none;">
+  <h2>Persian A</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Persian A develops advanced reading, writing, and analytical skills in Persian through the study of literature
+    and other texts. Students explore cultural identity, themes, and stylistic features in Persian‑language works.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Focus on core texts and fundamental literary analysis.</li>
+    <li><strong>HL:</strong> More texts, deeper critical engagement, and extended written work.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Translation, diplomacy, journalism, teaching, cultural studies, and roles involving Persian language and literature.
+  </p>
+</div>
+
+<!-- 2-1: Language B HL/SL -->
+<div id="modal-subject-2-1" class="modal-template" style="display:none;">
+  <h2>Language B HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Language B is for students with prior experience in the language. It develops communication skills in reading,
+    writing, listening, and speaking, while exploring cultural topics and real‑world contexts.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Everyday communication, basic texts, and practical language use.</li>
+    <li><strong>HL:</strong> More complex texts, deeper cultural analysis, and extended writing tasks.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    International relations, tourism, translation, global business, diplomacy, and education.
+  </p>
+</div>
+
+<!-- 2-2: Language ab initio SL -->
+<div id="modal-subject-2-2" class="modal-template" style="display:none;">
+  <h2>Language ab initio SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Language ab initio is designed for complete beginners. Students build foundational vocabulary and grammar to
+    communicate in everyday situations and gain basic cultural awareness.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL only:</strong> Ab initio is offered only at SL, with a focus on practical communication.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Tourism, hospitality, international communication, and roles where basic language skills are an advantage.
+  </p>
+</div>
+
+<!-- 3-1: Digital Society HL/SL -->
+<div id="modal-subject-3-1" class="modal-template" style="display:none;">
+  <h2>Digital Society HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Digital Society explores how digital technologies shape individuals, communities, and global systems.
+    Students examine topics like social media, AI, data privacy, digital ethics, and online culture.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core concepts of digital technologies and their social impact.</li>
+    <li><strong>HL:</strong> Deeper investigations, extended projects, and more complex case studies.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Digital media, UX design, tech policy, communications, cybersecurity, and social research.
+  </p>
+</div>
+
+<!-- 3-2: Business HL/SL -->
+<div id="modal-subject-3-2" class="modal-template" style="display:none;">
+  <h2>Business HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Business Management examines how organizations operate through marketing, finance, human resources, and strategy.
+    Students analyze real‑world case studies and learn how decisions affect different stakeholders.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core business concepts and basic analytical tools.</li>
+    <li><strong>HL:</strong> More quantitative analysis, deeper strategic thinking, and extended case work.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Business administration, marketing, entrepreneurship, finance, management consulting, and international business.
+  </p>
+</div>
+
+<!-- 3-3: Psychology HL/SL -->
+<div id="modal-subject-3-3" class="modal-template" style="display:none;">
+  <h2>Psychology HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Psychology explores human behavior and mental processes through biological, cognitive, and sociocultural approaches.
+    Students study key theories, research methods, and real‑world applications.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core approaches and one optional topic.</li>
+    <li><strong>HL:</strong> Additional research methods, more content depth, and extended analysis.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Clinical psychology, counseling, neuroscience, education, social work, and human resources.
+  </p>
+</div>
+
+<!-- 4-1: Biology HL/SL -->
+<div id="modal-subject-4-1" class="modal-template" style="display:none;">
+  <h2>Biology HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Biology studies living organisms, from cells and genetics to ecosystems and human physiology. Students develop
+    scientific inquiry skills through experiments and data analysis.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core biological concepts and standard lab work.</li>
+    <li><strong>HL:</strong> Greater depth in genetics, metabolism, and molecular biology.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Medicine, biotechnology, genetics, environmental science, research, and healthcare professions.
+  </p>
+</div>
+
+<!-- 4-2: Chemistry HL/SL -->
+<div id="modal-subject-4-2" class="modal-template" style="display:none;">
+  <h2>Chemistry HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Chemistry examines the composition and behavior of matter, including atomic structure, bonding, energetics,
+    kinetics, and organic chemistry. Practical lab work is a key component.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core chemical principles and standard calculations.</li>
+    <li><strong>HL:</strong> More complex mechanisms, advanced energetics, and deeper organic chemistry.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Medicine, pharmacy, chemical engineering, biochemistry, environmental science, and materials science.
+  </p>
+</div>
+
+<!-- 4-3: Physics HL/SL -->
+<div id="modal-subject-4-3" class="modal-template" style="display:none;">
+  <h2>Physics HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Physics explores motion, forces, energy, waves, electricity, and modern physics. Students apply mathematics
+    to understand and model physical phenomena.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core topics with standard mathematical depth.</li>
+    <li><strong>HL:</strong> Additional topics such as quantum physics and relativity, with more advanced math.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Engineering, astrophysics, robotics, aviation, renewable energy, and scientific research.
+  </p>
+</div>
+
+<!-- 4-4: Computer Science HL/SL -->
+<div id="modal-subject-4-4" class="modal-template" style="display:none;">
+  <h2>Computer Science HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Computer Science develops computational thinking, programming skills, and understanding of algorithms,
+    data structures, and system design. Students also consider ethical and social implications of technology.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Programming fundamentals, basic algorithms, and core theory.</li>
+    <li><strong>HL:</strong> Advanced algorithms, object‑oriented design, and deeper theoretical content.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Software engineering, AI, cybersecurity, data science, game development, and IT systems.
+  </p>
+</div>
+
+<!-- 5-1: Mathematics Analysis and Approaches HL/SL -->
+<div id="modal-subject-5-1" class="modal-template" style="display:none;">
+  <h2>Mathematics Analysis and Approaches HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Mathematics: Analysis and Approaches focuses on algebra, functions, calculus, and mathematical reasoning.
+    It is suited for students who enjoy abstract thinking and rigorous problem‑solving.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Core calculus, algebra, and functions.</li>
+    <li><strong>HL:</strong> More advanced calculus, proofs, and deeper theoretical concepts.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Engineering, physics, computer science, economics, mathematics, and quantitative finance.
+  </p>
+</div>
+
+<!-- 6-1: Visual Arts HL/SL -->
+<div id="modal-subject-6-1" class="modal-template" style="display:none;">
+  <h2>Visual Arts HL/SL</h2>
+
+  <h3>Course Overview</h3>
+  <p>
+    Visual Arts encourages creative exploration through drawing, painting, sculpture, digital media, and mixed
+    techniques. Students develop a personal artistic voice while studying global art traditions.
+  </p>
+
+  <h3>HL vs SL</h3>
+  <ul>
+    <li><strong>SL:</strong> Focus on studio work and basic art analysis with a smaller portfolio.</li>
+    <li><strong>HL:</strong> More extensive portfolio, deeper experimentation, and a more detailed comparative study.</li>
+  </ul>
+
+  <h3>Career Pathways</h3>
+  <p>
+    Graphic design, architecture, animation, fine arts, illustration, fashion design, and creative media fields.
+  </p>
+</div>
+
+{% endblock %}

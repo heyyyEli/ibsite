@@ -1,0 +1,9 @@
+<!-- chat/templates/chat/partials/messages_list.html -->
+{% for m in messages %}
+  <div class="msg">
+    <div class="meta">{{ m.display_name }} <span class="time">{{ m.timestamp|date:"H:i" }}</span></div>
+    <div class="text">{{ m.content }}</div>
+  </div>
+{% empty %}
+  <p class="empty">No messages yet.</p>
+{% endfor %}

@@ -1,0 +1,56 @@
+
+{% extends "ibsitemain/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- PAGE CONTAINER -->
+<section style="max-width: 1100px; margin: 3rem auto; padding: 0 20px;">
+
+  <!-- PAGE TITLE -->
+  <h1 style="
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 2.5rem;
+      color: #003b6f;
+      font-weight: 700;">
+    IB Tips & Strategies
+  </h1>
+
+  <!-- GRID OF TIP CARDS -->
+  <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+  ">
+    {% for t in tips %}
+      <!-- TIP CARD -->
+      <div 
+        style="
+          background: white;
+          padding: 1.8rem;
+          border-radius: 16px;
+          border: 1px solid #e6e6e6;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          transition: 0.2s;
+        "
+        onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'"
+      >
+        <h2 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: #005fa3;">
+          {{ t.title }}
+        </h2>
+
+        <div style="color: #444; line-height: 1.6; margin-bottom: 0.8rem;">
+          {{ t.content|linebreaks }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+
+
+

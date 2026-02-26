@@ -1,0 +1,131 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}Creativity, Activity, Service (CAS){% endblock %}
+
+{% block content %}
+<main class="cas-page" id="main-content" style="transition: filter 0.3s ease;">
+
+  <h1>Creativity, Activity, Service (CAS)</h1>
+  <p>{{ description }}</p>
+
+  <section class="cas-section">
+    <h2>Structure of CAS</h2>
+    <pre class="cas-text">{{ structure }}</pre>
+  </section>
+
+  <section class="cas-section">
+    <h2>CAS Requirements</h2>
+    <p>{{ requirements }}</p>
+  </section>
+
+  <section class="cas-section cas-purpose">
+    <div class="purpose-text">
+      <h2>Educational Purpose</h2>
+      <p>{{ educational_purpose }}</p>
+    </div>
+  
+    <div class="purpose-button">
+      <button id="cas-learning-outcomes-btn" class="cas-button">
+        CAS Learning Outcomes
+      </button>
+    </div>
+  </section>
+
+  <!-- Hall of Fame section -->
+<section class="cas-hall-of-fame">
+  <h2>CAS Hall of Fame</h2>
+  {% for year, projects in projects_by_year.items %}
+    <h3>Best Projects {{ year }}</h3>
+    <div class="projects-grid">
+      {% for project in projects %}
+        <div class="project-card">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+          {% endif %}
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.description }}</p>
+          <ul class="strands">
+            {% if project.creativity %}<li>🎨 Creativity</li>{% endif %}
+            {% if project.activity %}<li>🏃 Activity</li>{% endif %}
+            {% if project.service %}<li>🤝 Service</li>{% endif %}
+          </ul>
+          <p><strong>Duration:</strong> {{ project.duration }}</p>
+          <p><strong>Impact:</strong> {{ project.impact }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</section>
+</main>
+
+<!-- Modal for CAS Learning Outcomes -->
+<div id="cas-outcomes-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cas-modal-title" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+  <div class="modal__backdrop" data-close style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+  <div class="modal__panel" role="document" tabindex="0" style="position: relative; z-index: 10000; background: white; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 20px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 80vh; overflow-y: auto;">
+    <div class="modal__header" style="position: sticky; top: 0; background: white; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+      <h2 id="cas-modal-title">CAS Learning Outcomes</h2>
+      <button class="modal__close" type="button" aria-label="Close" style="float: right; background: none; border: none; font-size: 1.5rem; cursor: pointer; position: absolute; top: 10px; right: 15px;">&times;</button>
+    </div>
+    <div class="modal__content" style="color: black; padding-top: 10px;">
+      <ul>
+        {% for outcome in learning_outcomes %}
+        <li style="margin-bottom: 10px;">{{ outcome }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('cas-learning-outcomes-btn');
+    const modal = document.getElementById('cas-outcomes-modal');
+    const mainContent = document.getElementById('main-content');
+    const closeBtn = modal.querySelector('.modal__close');
+    const backdrop = modal.querySelector('.modal__backdrop');
+
+    function openModal() {
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      
+      // Apply blur to main content only
+      mainContent.style.filter = 'blur(5px) brightness(0.8)';
+      mainContent.style.pointerEvents = 'none';
+      mainContent.style.userSelect = 'none';
+      
+      // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
+      
+      modal.querySelector('.modal__panel').focus();
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      
+      // Remove blur from main content
+      mainContent.style.filter = 'none';
+      mainContent.style.pointerEvents = 'auto';
+      mainContent.style.userSelect = 'auto';
+      
+      // Restore background scrolling
+      document.body.style.overflow = '';
+      
+      btn.focus();
+    }
+
+    btn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.style.display === 'block') {
+        closeModal();
+      }
+    });
+  });
+</script>
+{% endblock %}

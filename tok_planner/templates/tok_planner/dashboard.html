@@ -1,0 +1,38 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}TOK Planner{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>TOK Planner</h1>
+  <p>Plan your TOK Essay and Exhibition with milestones, outlines, and exemplars.</p>
+
+  <div class="ee-actions">
+    <a class="cas-button" href="{% url 'tok_prompt_list' %}">Essay prompts</a>
+    <a class="cas-button" href="{% url 'tok_essay_outline' %}">Essay outline</a>
+    <a class="cas-button" href="{% url 'tok_essay_exemplars' %}">Essay exemplars</a>
+
+    <a class="cas-button" href="{% url 'tok_exhibition_prompt_list' %}">Exhibition prompts</a>
+    <a class="cas-button" href="{% url 'tok_object_list' %}">Objects</a>
+    <a class="cas-button" href="{% url 'tok_exhibition_commentary' %}">Commentary builder</a>
+    <a class="cas-button" href="{% url 'tok_exhibition_exemplars' %}">Exhibition exemplars</a>
+
+    <a class="cas-button" href="{% url 'tok_presentation_prep' %}">Presentation prep</a>
+    <a class="cas-button" href="{% url 'tok_reflections' %}">Reflections</a>
+  </div>
+
+  <section class="cas-section">
+    <h2>Essay progress</h2>
+    <div class="progress-bar">
+      <div class="progress-fill progress-{{ essay_progress_class }}"></div>
+    </div>
+    <p><strong>Progress:</strong> {{ essay_progress }}%</p>
+  </section>
+
+  <section class="cas-section">
+    <h2>Exhibition progress</h2>
+    <div class="progress-bar">
+      <div class="progress-fill progress-{{ exhibition_progress_class }}"></div>
+    </div>
+    <p><strong>Progress:</strong> {{ exhibition_progress }}%</p>
+  </section>
+</main>
+{% endblock %}

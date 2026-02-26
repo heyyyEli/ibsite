@@ -1,0 +1,43 @@
+<!-- chat/templates/chat/chat_home.html -->
+{% extends "ibsitemain/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'chat/chat.css' %}">
+<div class="chat-page" style="flex: 1; display: flex; flex-direction: column; margin:0; padding:0;">
+  <header class="chat-header">
+    <h1>Community Chat</h1>
+    <nav class="chat-tabs">
+      {% for ch in channels %}
+        <button class="chat-tab" data-channel="{{ ch.name }}">
+          {{ ch.get_name_display }}
+          <span class="unread-badge" id="unread-{{ ch.name }}">0</span>
+        </button>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <main class="chat-main">
+    <aside class="chat-sidebar">
+      <ul>
+        {% for ch in channels %}
+          <li>
+            <button class="channel-btn" data-channel="{{ ch.name }}">
+              #{{ ch.name }} <span class="unread-pill" id="pill-{{ ch.name }}">0</span>
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+    </aside>
+
+    <section class="chat-window">
+      <div id="messages" class="chat-messages"></div>
+      <div class="chat-input">
+        <textarea id="messageInput" placeholder="Type a message..."></textarea>
+        <button id="sendBtn">Send</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="{% static 'chat/chat.js' %}"></script>
+{% endblock %}

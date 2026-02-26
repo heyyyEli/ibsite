@@ -1,0 +1,48 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}EE Brainstorming{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>EE Topic Brainstorming</h1>
+  <p>Pick a subject and refine your broad interest into a focused research question.</p>
+
+  <form method="get" class="filter-form">
+    {{ form.as_p }}
+    <button type="submit" class="cas-button">Generate suggestions</button>
+  </form>
+
+  {% if suggestions %}
+    <section class="cas-section">
+      <h2>Guided prompts</h2>
+      <ul>
+        {% for s in suggestions %}<li>{{ s }}</li>{% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if stats %}
+    <section class="cas-section">
+      <h2>Subject statistics — {{ stats.subject }}</h2>
+      <p><strong>Grade distribution:</strong> 
+        A: {{ stats.avg_grade_distribution.A }}%, 
+        B: {{ stats.avg_grade_distribution.B }}%, 
+        C: {{ stats.avg_grade_distribution.C }}%, 
+        D: {{ stats.avg_grade_distribution.D }}%, 
+        E: {{ stats.avg_grade_distribution.E }}%
+      </p>
+      <p><strong>Difficulty notes:</strong> {{ stats.difficulty_notes }}</p>
+      <p><strong>Common pitfalls:</strong> {{ stats.common_pitfalls }}</p>
+    </section>
+  {% endif %}
+
+  {% if exemplars %}
+    <section class="cas-section">
+      <h2>Exemplar downloads</h2>
+      <ul>
+        {% for ex in exemplars %}
+          <li><strong>{{ ex.title }}:</strong> <a href="{{ ex.file.url }}" download>Download PDF</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</main>
+{% endblock %}

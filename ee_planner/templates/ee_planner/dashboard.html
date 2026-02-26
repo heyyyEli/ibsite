@@ -1,0 +1,25 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}EE Planner{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>EE Planner</h1>
+  <p>Track your Extended Essay projects, timelines, and milestones.</p>
+
+  <div class="ee-actions">
+    <a class="cas-button" href="{% url 'ee_brainstorm' %}">Start brainstorming</a>
+    <a class="cas-button" href="{% url 'ee_create_timeline' %}">Create timeline</a>
+  </div>
+
+  <div class="ideas-grid">
+    {% for p in projects %}
+      <div class="idea-card">
+        <h3>{{ p.subject }} — {{ p.topic }}</h3>
+        <p><strong>Start:</strong> {{ p.start_date }} | <strong>Deadline:</strong> {{ p.deadline }}</p>
+        <a class="cas-button" href="{% url 'ee_timeline_detail' p.id %}">View timeline</a>
+      </div>
+    {% empty %}
+      <p>No EE projects yet. Start brainstorming to begin.</p>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

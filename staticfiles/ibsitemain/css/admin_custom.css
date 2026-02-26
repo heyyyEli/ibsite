@@ -1,0 +1,40 @@
+body, .module h2 {
+  background-color: #001f3f !important;
+  color: #00bfff !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#content-main, #header {
+  background-color: #00264d !important;
+}
+
+#header, #header h1 {
+  color: #00d4ff !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.quick-search input[type="search"] {
+  border: 1px solid #00bfff;
+  background-color: #003366;
+  color: #b3e0ff;
+}
+
+a {
+  color: #00cfff;
+}
+
+button, input[type="submit"] {
+  background-color: #007acc;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #005fa3;
+}

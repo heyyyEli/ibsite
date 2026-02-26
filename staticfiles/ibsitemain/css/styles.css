@@ -1,0 +1,865 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Colors and base */
+
+
+:root {
+  --bg-mid: #082c5c;            /* Deep navy background */
+  --nav-dark-blue: #13325a;     /* Navigation dark blue */
+  --nav-border-color: #1a3b66;  /* Blue border for nav */
+  --nav-text-light: #b3d6ff;    /* Light blue/nav link color */
+  --nav-text-active: #ffffff;   /* White for active link text */
+  --nav-bg-active: #00bfff;     /* Bright blue for active background */
+  --nav-bg-hover: #003b66;      /* Darker blue for hover bg */
+  --nav-btn-bg: #00bfff;        /* Login button background */
+}
+
+/* Navigation bar container & style */
+nav {
+  background-color: var(--nav-dark-blue);
+  padding: 1rem 0.2rem;
+  border-bottom: 1px solid var(--nav-border-color);
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+
+.main-nav {
+  display: flex;
+  width: 100%;
+}
+
+
+
+/* Nav list container */
+nav ul.main-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav list items */
+nav ul.main-nav li {
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+nav ul.main-nav li a {
+  color: var(--nav-text-light);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  display: inline-block;
+  border-radius: 12px;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* Prevent breaking */
+}
+
+/* Active nav item */
+nav ul.main-nav li.active,
+nav ul.main-nav li.active a {
+  background-color: var(--nav-bg-active);
+  color: var(--nav-text-active);
+  font-weight: 700;
+}
+
+/* Hover/focus state */
+nav ul.main-nav li:hover,
+nav ul.main-nav li:focus-within {
+  background-color: var(--nav-bg-hover);
+}
+
+nav ul.main-nav li:hover > a,
+nav ul.main-nav li:focus-within > a {
+  color: var(--nav-text-active);
+  outline: none;
+  font-weight: 700;
+}
+
+/* Login button styling */
+.login-btn {
+  margin-left: auto;
+  background-color: var(--nav-btn-bg);
+  color: var(--nav-text-active) !important;
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow:
+    0 0 6px var(--nav-btn-bg),
+    inset 0 0 6px var(--nav-btn-bg);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover,
+.login-btn:focus-visible {
+  background-color: #00a0df;
+  box-shadow:
+    0 0 12px #00a0df,
+    inset 0 0 12px #00a0df;
+  outline: none;
+}
+
+/* Dropdown submenu container */
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  background: var(--nav-dark-blue);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1100;
+}
+
+/* Show submenu on hover */
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown submenu item */
+.dropdown-menu li {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  color: var(--nav-text-light);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  border-radius: 8px;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus-visible {
+  background-color: var(--nav-bg-active);
+  color: var(--nav-text-active);
+  outline: none;
+}
+
+/* Fluid white hover effect */
+.fluid-hover-effect {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2.8rem;
+  width: 100px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  filter: drop-shadow(0 0 8px rgba(255 255 255 / 0.8));
+  pointer-events: none;
+  transform: translateY(-50%) translateX(0);
+  transition: transform 0.25s ease, width 0.25s ease;
+  z-index: 5;
+  will-change: transform, width;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Match homepage background */
+.subjects-section {
+  padding: 2rem;
+  color: #b3d6ff;
+}
+
+/* Grid container */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+/* Subject boxes with neon glow */
+.subject-box {
+  background: #132e51;
+  border: 2px solid #00bfff;
+  border-radius: 16px;
+  width: 180px;
+  height: 180px;
+  box-shadow:
+    0 0 8px #00bfff,
+    0 0 24px #00bfff,
+    inset 0 0 8px #00bfff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject-box:hover,
+.subject-box:focus-visible {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 16px #00d1ff,
+    0 0 32px #00d1ff,
+    inset 0 0 16px #00d1ff;
+  outline: none;
+}
+
+
+
+/* Subject name style */
+.subject-name {
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  color: #00bfff;
+}
+
+/* Modal backdrop hides and blurs background */
+body.modal-open main {
+  filter: blur(5px) brightness(0.8);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Modal main styles */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal.open {
+  display: flex;
+}
+
+/* Modal panel with 3D light blue shading */
+.modal__panel {
+  background: linear-gradient(135deg, #a6c8ff 0%, #c9dbff 100%);
+  border-radius: 20px;
+  box-shadow:
+    6px 6px 15px #8bb2ff,
+    -6px -6px 15px #d8e0ff;
+  width: min(600px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  color: black;
+}
+
+/* Modal close button */
+.modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #003366;
+  transition: color 0.3s ease;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  color: #0059b3;
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+/* Neon button style */
+.neon-button {
+  box-shadow: 0 0 12px #00d1ff;
+  border-radius: 12px;
+  border: none;
+  background-color: #00bfff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-button:hover {
+  box-shadow: 0 0 24px #00efff;
+  outline: none;
+}
+
+
+
+
+
+
+.ee-info-cards > div {
+  transition: transform 0.2s cubic-bezier(.4,2,.5,1), box-shadow 0.2s;
+}
+.ee-info-cards > div:hover,
+.ee-info-cards > div:focus-within {
+  transform: scale(1.03);
+  box-shadow: 0 6px 38px #00e7ff70, 0 0 24px #00f0ff88 inset;
+  outline:none;
+}
+.ee-page h1, .ee-page h2, .ee-page h3 { font-family: 'Segoe UI', 'Tahoma', 'Geneva', sans-serif;}
+
+
+
+
+/* Container for whole benefits page section */
+.ib-diploma-benefits {
+  background-color: var(--bg-mid);
+  padding: 2.5rem 3rem;
+  color: #e6e6e6;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main page header */
+.ib-diploma-benefits .page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #00bfff;
+}
+
+/* Intro or lead paragraph */
+.ib-diploma-benefits .intro-text {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  color: #b3d6ff;
+  line-height: 1.6;
+}
+
+/* Container for rows of benefit columns */
+.ib-diploma-benefits .benefit-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Each horizontal row holding two benefit columns */
+.ib-diploma-benefits .row {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+}
+
+/* Each benefit column box */
+.ib-diploma-benefits .benefit-col {
+  flex: 1 1 45%;
+  background: #0b1f3a;
+  border: 2px solid #00bfff;
+  border-radius: 15px;
+  padding: 1.8rem 1.5rem;
+  box-shadow:
+    0 0 10px #00bfff88,
+    0 0 24px #00bfffaa,
+    inset 0 0 10px #00bfff88;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover and focus effect for columns */
+.ib-diploma-benefits .benefit-col:hover,
+.ib-diploma-benefits .benefit-col:focus-within {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px #00d7ffee,
+    0 0 40px #00d7ffee,
+    inset 0 0 20px #00d7ffcc;
+  outline: none;
+}
+
+/* Benefit title styling */
+.ib-diploma-benefits .benefit-title {
+  color: #19e6e6;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* Benefit description/detail text */
+.ib-diploma-benefits .benefit-detail {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #d3dff5;
+}
+
+
+
+
+.ib-info-wrapper {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.benefit-blocks, .disadvantage-blocks {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00bfff;
+  margin-bottom: 1.2rem;
+}
+
+.disadvantage-title {
+  color: #ff6666;  /* Red tinted to contrast benefits */
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.disadvantage-detail {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #f0c0c0; /* Light red/pink text */
+}
+
+
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #0c5f9e; /* Matches your IB blue */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+/* CAS Hall of Fame Section */
+.cas-hall-of-fame {
+  background: #f0f8ff; /* very light blue */
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border: 1px solid #cce0ff;
+}
+
+.cas-hall-of-fame h2 {
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.cas-hall-of-fame h3 {
+  color: #004080;
+  margin-top: 1rem;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.project-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 280px;
+  color: #00264d;
+  border: 1px solid #99ccff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.project-card h4 {
+  color: #0059b3;
+}
+
+.project-card .strands {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  color: #004080;
+}
+
+
+/* CAS Page Base */
+.cas-page {
+  background: #f5faff; /* soft light blue background */
+  color: #003366;      /* deep blue text for readability */
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* Sections */
+.cas-section {
+  margin-top: 2rem;
+  background: #ffffff;
+  border: 1px solid #cce0ff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.cas-text {
+  white-space: pre-wrap;
+  color: #004080;
+}
+
+/* Purpose layout */
+.cas-purpose {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.purpose-text {
+  flex: 1;
+  min-width: 320px;
+}
+
+.purpose-button {
+  flex: unset;
+  min-width: 260px;
+}
+
+/* Button */
+.cas-button {
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #99ccff;
+  background-color: #e6f2ff;
+  color: #003366;
+  transition: background-color 0.3s ease;
+}
+
+.cas-button:hover {
+  background-color: #cce6ff;
+}
+
+
+/* CAS Idea Generator Page */
+.cas-ideas-page {
+  background: #f5faff; /* soft light blue */
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-form input {
+  padding: 0.5rem;
+  border: 1px solid #99ccff;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.filter-form button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #99ccff;
+  background-color: #e6f2ff;
+  color: #003366;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-form button:hover {
+  background-color: #cce6ff;
+}
+
+.ideas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.idea-card {
+  background: #ffffff;
+  border: 1px solid #cce0ff;
+  border-radius: 10px;
+  padding: 1rem;
+  flex: 1;
+  min-width: 280px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.idea-card h3 {
+  color: #0059b3;
+  margin-bottom: 0.5rem;
+}
+
+.strands {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  color: #004080;
+}
+
+
+/* EE Planner pages */
+.ee-page {
+  background: #f5faff;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.ee-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e6f2ff;
+  border: 1px solid #cce0ff;
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #99ccff;
+  transition: width 0.4s ease;
+}
+
+/* Dynamic progress classes (0–100%) */
+.progress-0   { width: 0%; }
+.progress-10  { width: 10%; }
+.progress-20  { width: 20%; }
+.progress-30  { width: 30%; }
+.progress-40  { width: 40%; }
+.progress-50  { width: 50%; }
+.progress-60  { width: 60%; }
+.progress-70  { width: 70%; }
+.progress-80  { width: 80%; }
+.progress-90  { width: 90%; }
+.progress-100 { width: 100%; }
+
+/* Status labels */
+.status-complete {
+  color: #006600;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: #cc6600;
+  font-weight: bold;
+}
+
+/* Muted text */
+.muted { color: #6b7280; font-size: 0.95rem; }
+
+.filter-form button.cas-button {
+  margin-top: 0.5rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left ul,
+.nav-right ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-right {
+  margin-left: auto;
+}
+
+.login-btn {
+  padding: 6px 12px;
+  background: #0077cc;
+  color: white;
+  border-radius: 4px;
+}
+
+.login-btn:hover {
+  background: #005fa3;
+}
+
+
+.main-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+/* hOMEPAGE  */
+
+.homepage-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Section base style */
+.hero-banner,
+.intro-section,
+.curriculum-section,
+.benefits-section,
+.assessment-section {
+    background: #153055;
+    color: #7ab0ed;
+    padding: 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 18px #00bfff55, inset 0 0 12px #00bfff33;
+    border: 1px solid #00bfff55;
+}
+
+/* Headings */
+.hero-banner h1,
+.intro-section h2,
+.curriculum-section h2,
+.benefits-section h2,
+.assessment-section h2 {
+    color: #0388ad;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Paragraphs */
+.hero-banner p,
+.intro-section p,
+.curriculum-section p,
+.benefits-section p,
+.assessment-section p {
+    line-height: 1.7;
+    font-size: 1.15rem;
+    color: #68a6e0;
+}
+
+/* Lists */
+.curriculum-section ul,
+.benefits-section ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.curriculum-section li,
+.benefits-section li {
+    margin-bottom: 0.5rem;
+    color: #5984b4;
+}
+
+/* Highlight boxes */
+.highlight-box {
+    background: #1f406d;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #42bfe971;
+    box-shadow: 0 0 10px #00bfff33;
+    margin-top: 1.5rem;
+}
+
+/* Buttons (optional) */
+.home-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.4rem;
+    background: #00bfff;
+    color: #003d7a;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0 12px #00bfff;
+    transition: 0.3s ease;
+}
+
+.home-btn:hover {
+    background: #00a7e6;
+    box-shadow: 0 0 20px #00d1ff;
+}
+

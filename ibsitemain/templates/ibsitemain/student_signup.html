@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Sign Up</title>
+    <link rel="stylesheet" href="{% static 'ibsitemain/css/login.css' %}">
+</head>
+<body>
+  <div class="login-container">
+    <img src="{% static 'ibsitemain/img/ib-seal.png' %}" alt="IB Logo" class="logo" />
+    <h1>Student Sign Up</h1>
+
+    <form method="post" action="{% url 'student_signup' %}">
+      {% csrf_token %}
+      <input type="text" name="full_name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <select name="graduation_year" required>
+        <option value="">Select Graduation Year</option>
+        <option value="M26">M26</option>
+        <option value="N26">N26</option>
+        <!-- Add more options if needed -->
+      </select>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p><a href="{% url 'login' %}">Back to Login</a></p>
+  </div>
+</body>
+</html>

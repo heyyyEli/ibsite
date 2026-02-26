@@ -1,0 +1,14 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}Exhibition Commentary{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>Commentary Builder</h1>
+  <p>Link your object to a prescribed prompt and draft your commentary.</p>
+
+  <form method="post" class="filter-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="cas-button">Save commentary</button>
+  </form>
+</main>
+{% endblock %}

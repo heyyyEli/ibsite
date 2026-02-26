@@ -1,0 +1,23 @@
+{% extends 'ibsitemain/base.html' %}
+{% block title %}Prompt Breakdown{% endblock %}
+{% block content %}
+<main class="ee-page">
+  <h1>Prompt</h1>
+  <p>{{ prompt.prompt_text }}</p>
+
+  <section class="cas-section">
+    <h2>Key terms</h2>
+    <p>{{ prompt.key_terms|linebreaks }}</p>
+  </section>
+
+  <section class="cas-section">
+    <h2>Possible interpretations</h2>
+    <p>{{ prompt.interpretations|linebreaks }}</p>
+  </section>
+
+  <section class="cas-section">
+    <h2>Guiding questions</h2>
+    <p>{{ prompt.guiding_questions|linebreaks }}</p>
+  </section>
+</main>
+{% endblock %}
