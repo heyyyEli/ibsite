@@ -23,9 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a(7&u!59_pl#j6^xe1y6x_xb2cgmlc4+b0xf6nvrem^!&+a1(n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'web-production-a20c5.up.railway.app',
+]
+
 
 
 # Application definition
@@ -161,3 +166,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-a20c5.up.railway.app',
+]
