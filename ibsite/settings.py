@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'web-production-a20c5.up.railway.app',
+    'ibsite.onrender.com',
 ]
 
 
@@ -169,4 +170,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-a20c5.up.railway.app',
+    'https://ibsite.onrender.com',
 ]
